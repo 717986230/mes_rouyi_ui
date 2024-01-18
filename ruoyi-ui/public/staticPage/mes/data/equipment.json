@@ -1,0 +1,715 @@
+[    
+    {
+        "name": "1#VPSA",
+        "type": "PSA/VPSA",
+        "in": {
+            "count": 2,
+            "data": [
+                {
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "name": "1#VPSA装置歧化氢气进料线1#VPSA装置歧化氢气进料线",
+                    "peer": [
+                        {
+                            "name": "1#2#歧化装置",
+                            "open": true
+                        }
+                    ],
+                    "material": "歧化尾氢"
+                },
+                {
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "name": "1#VPSA装置重整氢进料线",
+                    "peer": "1#2#3#连续重整装置",
+                    "material": "重整氢"
+                }
+            ]
+        },
+        "out": {
+            "count": 2,
+            "data": [
+                {
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "name": "1#VPSA装置氢气出料线",
+                    "peer": "氢气罐组一",
+                    "material": "氢气"
+                },
+                {
+                    "name": "1#VPSA装置解吸气出料线",
+                    "peer": "燃料气管网",
+                    "material": "解吸气"
+                }
+            ]
+        }
+    },
+    {
+        "name": "2#VPSA",
+        "type": "PSA/VPSA",
+        "in": {
+            "count": 2,
+            "data": [
+                {
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "name": "1#VPSA装置歧化氢气进料线1#VPSA装置歧化氢气进料线",
+                    "peer": "1#2#歧化装置",
+                    "material": "歧化尾氢"
+                },
+                {
+                    "name": "1#VPSA装置重整氢进料线",
+                    "peer": "1#2#3#连续重整装置",
+                    "material": "重整氢"
+                }
+            ]
+        },
+        "out": {
+            "count": 2,
+            "data": [
+                {
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "name": "1#VPSA装置氢气出料线",
+                    "peer": "氢气罐组一",
+                    "material": "氢气"
+                },
+                {
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "name": "1#VPSA装置解吸气出料线",
+                    "peer": "燃料气管网",
+                    "material": "解吸气"
+                }
+            ]
+        }
+    },
+    {
+        "name": "1#轻烃回收",
+        "type": "轻烃回收",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    },
+    {
+        "name": "2#轻烃回收",
+        "type": "轻烃回收",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    },
+    {
+        "name": "1#煤油加氢",
+        "type": "煤油加氢",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    },
+    {
+        "name": "2#煤油加氢",
+        "type": "煤油加氢",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    },
+    {
+        "name": "PSA",
+        "type": "PSA/VPSA",
+        "in": {
+            "count": 3,
+            "data": [
+                {
+                    "name": "PSA装置净化吸收塔顶气进料线",
+                    "peer": [
+                        {
+                            "name": "1#2#轻烃回收装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "净化吸收塔顶气"
+                },
+                {
+                    "name": "PSA装置脱硫尾气进料线",
+                    "peer": [
+                        {
+                            "name": "C3/C4混合脱氢装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "净脱氢尾气"
+                },
+                {
+                    "name": "PSA装置脱硫低分气进料线",
+                    "peer": [
+                        {
+                            "name": "1#2#渣油加氢装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "脱硫低分气"
+                }
+            ]
+        },
+        "out": {
+            "count": 4,
+            "data": [
+                {
+                    "name": "PSA装置氢气出料线",
+                    "peer": [
+                        {
+                            "name": "氢气管网",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "氢气"
+                },
+                {
+                    "name": "PSA装置解吸气出料线",
+                    "peer": [
+                        {
+                            "name": "燃料气管网",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "解吸气"
+                },
+                {
+                    "name": "PSA装置PSA冷凝气出料线",
+                    "peer": [
+                        {
+                            "name": "1#轻烃回收装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "PSA冷凝气"
+                },
+                {
+                    "name": "PPSA装置PSA冷凝液出料线",
+                    "peer": [
+                        {
+                            "name": "2#轻烃回收装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "PSA冷凝气"
+                }
+            ]
+        }
+    },
+    {
+        "name": "1#柴油加氢",
+        "type": "柴油加氢",
+        "in": {
+            "count": 4,
+            "data": [
+                {
+                    "name": "1#柴油加氢装置直馏柴油进料线",
+                    "peer": [
+                        {
+                            "name": "1#常减压装置中间原料罐组五",
+                            "open": false
+                        },
+                        {
+                            "name": "2#常减压装置中间原料罐组五",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": "--",
+                    "end": 1100,
+                    "end_manu": "--",
+                    "material": "直馏柴油"
+                },
+                {
+                    "name": "1#柴油加氢装置渣油加氢柴油进料线",
+                    "peer": [
+                        {
+                            "name": "1#渣油加氢装置中间原料罐组五",
+                            "open": true
+                        },
+                        {
+                            "name": "2#渣油加氢装置中间原料罐组五",
+                            "open": false
+                        }
+                    ],
+                    "start": "200",
+                    "start_manu": "--",
+                    "end": "1200",
+                    "end_manu": "--",
+                    "material": "渣油加氢柴油"
+                },
+                {
+                    "name": "1#柴油加氢装置粗石脑油进料线",
+                    "peer": [
+                        {
+                            "name": "润滑油装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 300,
+                    "start_manu": 310,
+                    "end": 1300,
+                    "end_manu": 3110,
+                    "material": "粗石脑油油"
+                },
+                {
+                    "name": "1#柴油加氢装置氢气进料线",
+                    "peer": [
+                        {
+                            "name": "氢气罐组一",
+                            "open": true
+                        }
+                    ],
+                    "start": 400,
+                    "start_manu": 410,
+                    "end": 1400,
+                    "end_manu": 1410,
+                    "material": "氢气"
+                }
+            ]
+        },
+        "out": {
+            "count": 7,
+            "data": [
+                {
+                    "name": "1#柴油加氢装置重石脑油出料线",
+                    "peer": [
+                        {
+                            "name": "1#重整装置中间原料罐组一",
+                            "open": true
+                        },
+                        {
+                            "name": "2#重整装置中间原料罐组二",
+                            "open": false
+                        },
+                        {
+                            "name": "3#重整装置中间原料罐组三",
+                            "open": true
+                        }
+                    ],
+                    "start": 100,
+                    "start_manu": 110,
+                    "end": 1100,
+                    "end_manu": 1110,
+                    "material": "重石脑油"
+                },
+                {
+                    "name": "1#柴油加氢装置轻石脑油出料线",
+                    "peer": [
+                        {
+                            "name": "C5/C6正异构分离装置",
+                            "open": true
+                        },
+                        {
+                            "name": "中间原料罐组十四",
+                            "open": true
+                        },
+                        {
+                            "name": "乙烯原料罐组",
+                            "open": false
+                        }
+                    ],
+                    "start": "200",
+                    "start_manu": 210,
+                    "end": "1200",
+                    "end_manu": "1210",
+                    "material": "轻石脑油"
+                },
+                {
+                    "name": "1#柴油加氢装置粗液化气出料线",
+                    "peer": [
+                        {
+                            "name": "1#轻烃回收装置",
+                            "open": true
+                        },
+                        {
+                            "name": "2#轻烃回收装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 300,
+                    "start_manu": 310,
+                    "end": 1300,
+                    "end_manu": 1310,
+                    "material": "粗液化气"
+                },
+                {
+                    "name": "1#柴油加氢装置酸性气出料线",
+                    "peer": [
+                        {
+                            "name": "1#轻烃回收装置",
+                            "open": true
+                        },
+                        {
+                            "name": "2#轻烃回收装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 400,
+                    "start_manu": 410,
+                    "end": 1400,
+                    "end_manu": 1410,
+                    "material": "酸性气"
+                },
+                {
+                    "name": "1#柴油加氢装置低分气出料线",
+                    "peer": [
+                        {
+                            "name": "1#渣油加氢装置",
+                            "open": false
+                        },
+                        {
+                            "name": "2#渣油加氢装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 500,
+                    "start_manu": 510,
+                    "end": 1500,
+                    "end_manu": 1510,
+                    "material": "低分气"
+                },
+                {
+                    "name": "1#柴油加氢装置低分气出料线",
+                    "peer": [
+                        {
+                            "name": "柴油成品罐",
+                            "open": true
+                        }
+                    ],
+                    "start": 600,
+                    "start_manu": 610,
+                    "end": 1600,
+                    "end_manu": 1610,
+                    "material": "加氢柴油"
+                },
+                {
+                    "name": "1#柴油加氢装置轻污油出料线",
+                    "peer": [
+                        {
+                            "name": "码头成品罐组六",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "轻污油"
+                }
+            ]
+        }
+    },
+    {
+        "name": "2#柴油加氢",
+        "type": "柴油加氢",
+        "in": {
+            "count": 4,
+            "data": [
+                {
+                    "name": "2#柴油加氢装置直馏柴油进料线",
+                    "peer": [
+                        {
+                            "name": "1#常减压装置中间原料罐组五",
+                            "open": true
+                        },
+                        {
+                            "name": "2#常减压装置中间原料罐组五",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "直馏柴油"
+                },
+                {
+                    "name": "2#柴油加氢装置渣油加氢柴油进料线",
+                    "peer": [
+                        {
+                            "name": "1#渣油加氢装置中间原料罐组五",
+                            "open": true
+                        },
+                        {
+                            "name": "2#渣油加氢装置中间原料罐组五",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "渣油加氢柴油"
+                },
+                {
+                    "name": "2#柴油加氢装置粗石脑油进料线",
+                    "peer": [
+                        {
+                            "name": "润滑油装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "粗石脑油油"
+                },
+                {
+                    "name": "2#柴油加氢装置氢气进料线",
+                    "peer": [
+                        {
+                            "name": "氢气罐组一",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "氢气"
+                }
+            ]
+        },
+        "out": {
+            "count": 7,
+            "data": [
+                {
+                    "name": "2#柴油加氢装置重石脑油出料线",
+                    "peer": [
+                        {
+                            "name": "1#重整装置中间原料罐组一",
+                            "open": true
+                        },
+                        {
+                            "name": "2#重整装置中间原料罐组二",
+                            "open": true
+                        },
+                        {
+                            "name": "3#重整装置中间原料罐组三",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "重石脑油"
+                },
+                {
+                    "name": "2#柴油加氢装置轻石脑油出料线",
+                    "peer": [
+                        {
+                            "name": "C5/C6正异构分离装置",
+                            "open": true
+                        },
+                        {
+                            "name": "中间原料罐组十四",
+                            "open": true
+                        },
+                        {
+                            "name": "乙烯原料罐组",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "轻石脑油"
+                },
+                {
+                    "name": "2#柴油加氢装置粗液化气出料线",
+                    "peer": [
+                        {
+                            "name": "1#轻烃回收装置",
+                            "open": true
+                        },
+                        {
+                            "name": "2#轻烃回收装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "粗液化气"
+                },
+                {
+                    "name": "2#柴油加氢装置酸性气出料线",
+                    "peer": [
+                        {
+                            "name": "1#轻烃回收装置",
+                            "open": true
+                        },
+                        {
+                            "name": "2#轻烃回收装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "酸性气"
+                },
+                {
+                    "name": "2#柴油加氢装置低分气出料线",
+                    "peer": [
+                        {
+                            "name": "1#渣油加氢装置",
+                            "open": true
+                        },
+                        {
+                            "name": "2#渣油加氢装置",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "低分气"
+                },
+                {
+                    "name": "2#柴油加氢装置低分气出料线",
+                    "peer": [
+                        {
+                            "name": "柴油成品罐",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "加氢柴油"
+                },
+                {
+                    "name": "2#柴油加氢装置轻污油出料线",
+                    "peer": [
+                        {
+                            "name": "码头成品罐组六",
+                            "open": true
+                        }
+                    ],
+                    "start": 700,
+                    "start_manu": 710,
+                    "end": 1700,
+                    "end_manu": 1710,
+                    "material": "轻污油"
+                }
+            ]
+        }
+    },
+    {
+        "name": "1#蜡油加氢",
+        "type": "腊油加氢",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    },
+    {
+        "name": "2#蜡油加氢",
+        "type": "蜡油加氢",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    },
+    {
+        "name": "1#渣油加氢",
+        "type": "渣油加氢",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    },
+    {
+        "name": "2#渣油加氢",
+        "type": "渣油加氢",
+        "in": {
+            "count": 0,
+            "data": []
+        },
+        "out": {
+            "count": 0,
+            "data": []
+        }
+    }
+]

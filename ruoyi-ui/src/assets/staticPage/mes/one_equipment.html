@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>装置视图</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="text-bg-info">
+        <h2 class="col-11 text-center">装置视图</h2>
+    </div>
+
+    <div class="row border me-2">
+        <div class="col-sm-2 d-flex offset-sm-1 align-items-center justify-content-center">
+            <label class="text-nowrap">班次：</label>
+            <input type="date" id="datepicker" placeholder="选择班次日期">
+        </div>
+        <div class="col-sm-2 d-flex align-items-center justify-content-center">
+            <label class="text-nowrap">装置：</label>
+            <select class="form-select" id="equipmentSelect" onchange="reload()">
+                <option value="0">1#柴油加氢</option>
+                <option value="1">2#柴油加氢</option>
+                <option value="2">PSA</option>
+                <option value="3">1#VPSA</option>
+                <option value="4">2#VPSA</option>
+                <option value="5">1#蜡油加氢</option>
+                <option value="6">2#蜡油加氢</option>
+                <option value="7">1#渣油加氢</option>
+                <option value="8">2#渣油加氢</option>
+            </select>
+        </div>
+        <div class="col-sm-3 offset-sm-1">
+            <form class="d-flex  justify-content-center">
+                <button type="button" class="btn btn-success me-3 text-nowrap">查看</button>
+                <button type="button" class="btn btn-success me-3 text-nowrap">取数</button>
+                <button type="button" class="btn btn-success me-3 text-nowrap">计算</button>
+                <button type="button" class="btn btn-success me-3 text-nowrap">保存</button>
+                <button type="button" class="btn btn-success me-3 text-nowrap">提交</button>
+            </form>
+        </div>
+        <div class="col-sm-2 d-flex align-items-center justify-content-center">
+            <label class="text-nowrap">仪表显示：</label>
+            <select class="form-select" id="instShow" onchange="reload()">
+                <option value="0">全部显示</option>
+                <option value="1">班初数值</option>
+                <option value="2">班末数值</option>
+            </select>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row border text-center" style="margin: 10px;">
+        <div class="col-sm-5">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-bg-info" width="340">付方列表</th>
+                        <th class="text-bg-info">物料/入线名</th>
+                        <th class="text-bg-info" width="20%">仪表</th>
+                    </tr>
+                </thead>
+                <tbody id="in-table-body">
+                    <!-- Data will be displayed here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-1 border bg-secondary text-white d-flex align-items-center justify-content-center">
+            <h1 id="equipmentName" class="text-center">这是一个居中的文本</h1>
+        </div>
+        <div class="col-sm-5">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-bg-primary" width="20%">仪表</th>
+                        <th class="text-bg-primary">物料/出线名</th>
+                        <th class="text-bg-primary" width="40%">收方列表</th>
+                    </tr>
+                </thead>
+                <tbody id="out-table-body">
+                    <!-- Data will be displayed here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <script src="script/bootstrap.bundle.js"></script>
+    <script>
+
+    </script>
+    <script src="script/one_equipment.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>罐监控</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .expand {
+            cursor: pointer;
+        }
+
+        .scroll-container {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            border: 1px solid #eee;
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+            /* 内容高度大于容器高度，触发滚动条 */
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .vertical-progressbar {
+            -ms-transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="row">
+        <div class="col-2" tag="树形控件-罐区选择">
+            <div class="scroll-container">
+                <ul id="tree">
+                    <li>
+                        <span class="expand" onclick="toggleNode(this)">-</span>罐区
+                        <ul>
+                            <li>
+                                <span class="expand" onclick="toggleNode(this)">-</span>油品1#罐区
+                                <ul>
+                                    <li>罐1-101</li>
+                                    <li>罐1-102</li>
+                                    <li>罐1-103</li>
+                                    <li>罐1-104</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="expand" onclick="toggleNode(this)">-</span>油品2#罐区
+                                <ul>
+                                    <li>罐2-201</li>
+                                    <li>罐2-202</li>
+                                    <li>罐2-203</li>
+                                    <li>罐2-204</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="expand" onclick="toggleNode(this)">-</span>油品3#罐区
+                                <ul>
+                                    <li>罐3-301</li>
+                                    <li>罐3-302</li>
+                                    <li>罐3-303</li>
+                                    <li>罐3-304</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="expand" onclick="toggleNode(this)">-</span>油品4#罐区
+                                <ul>
+                                    <li>罐4-401</li>
+                                    <li>罐4-402</li>
+                                    <li>罐4-403</li>
+                                    <li>罐4-404</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="expand" onclick="toggleNode(this)">-</span>航煤首站罐区
+                                <ul>
+                                    <li>航煤-001</li>
+                                    <li>航煤-002</li>
+                                    <li>航煤-003</li>
+                                    <li>航煤-004</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="expand" onclick="toggleNode(this)">-</span>卸车罐区
+                                <ul>
+                                    <li>卸车-001</li>
+                                    <li>卸车-002</li>
+                                    <li>卸车-003</li>
+                                    <li>卸车-004</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-10" tag="罐区信息展示">
+            <div class="row m-2" tag="第1-5行">
+                <div class="col">
+                    <div class="row m-3 border">
+                        <div class="col-2 p-2">日期：</div>
+                        <div class="col-4 p-2"><input type="date"></div>
+                        <div class="col-2 p-2">班次：</div>
+                        <div class="col-4 p-1">
+                            <select class="form-select" aria-label="default select">
+                                <option value="0" selected>夜班|20:00:00-08:00:00</option>
+                                <option value="1">白班|08:00:00-20:00:00</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row m-3 border">
+                        <div class="col-2 p-2">罐：</div>
+                        <div class="col-4 p-1">
+                            <select class="form-select" aria-label="default select">
+                                <option value="0" selected>罐1</option>
+                                <option value="1">罐2</option>
+                                <option value="2">罐3</option>
+                                <option value="3">罐4</option>
+                            </select>
+                        </div>
+                        <div class="col-2 p-2">物料：</div>
+                        <div class="col-4 p-1">
+                            <select class="form-select" aria-label="default select">
+                                <option value="0" selected>航空煤油</option>
+                                <option value="1">汽油</option>
+                                <option value="2">柴油</option>
+                                <option value="3">沥青</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row m-3 border">
+                        <div class="col-2 p-2">
+                            液位：
+                        </div>
+                        <div class="col-4 p-2">
+                            12.43
+                        </div>
+                        <div class="col-2 p-2">
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="col-4 text-nowrap p-2">是否自动</div>
+                    </div>
+                    <div class="row m-3 border">
+                        <div class="col-2 p-2 text-nowrap">设定点：</div>
+                        <div class="col-4 p-2">
+                            <input>
+                        </div>
+                        <div class="col-2 p-2">
+                            <input type="checkbox" checked>
+                        </div>
+                        <div class="col-2 text-nowrap p-2">是否上升</div>
+                        <div class="col-2 p-2">
+                            <button type="button" class="btn btn-outline-secondary"><i class="bi bi-gear-fill"></i>
+                                设定</button>
+                        </div>
+                    </div>
+                    <div class="row m-3 border">
+                        <div class="col-3 text-nowrap p-2">密度（kg/m3）：</div>
+                        <div class="col-3 p-2">
+                            <input>
+                        </div>
+                        <div class="col-2 p-2"></div>
+                        <div class="col-4 text-nowrap p-2">
+                            <button type="button" class="btn btn-outline-secondary"><i
+                                    class="bi bi-calculator-fill"></i> 计算器</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m-3">
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-4 border">
+                            <div class="text-nowrap border-1">
+                                <label>液位（m）</label>
+                                <div id="tankFarm"></div>
+                                <label for="">17米</label>
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4 border">
+                            <div class="col text-nowrap border-1">
+                                温度(°C)
+                                <div id="temp"></div>
+                                89 °C
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2 border" tag="第六行">
+                <div class="col-1">温度：</div>
+                <div class="col-2"></div>
+                <div class="col-1"><input type="checkbox" checked></div>
+                <div class="col-1 text-nowrap">是否上升</div>
+                <div class="col-1"></div>
+                <div class="col-1 text-nowrap">罐状态：</div>
+                <div class="col-2"><input></div>
+                <div class="col-1 text-nowrap">液位状态：</div>
+                <div class="col-2"><input></div>
+            </div>
+            <div class="row m-2 border" tag="第七行">
+                <div class="col-1 text-nowrap">环境温度（°C）：</div>
+                <div class="col-2"><input></div>
+                <div class="col-1">
+                    <input type="checkbox" checked>
+                </div>
+                <div class="col-2 text-nowrap">是否自动</div>
+                <div class="col"></div>
+            </div>
+            <div class="row m-2 border" tag="第八行">
+                <div class="col-4">
+                    <div class="row p-2 border">
+                        <div class="col-5 text-nowrap">总观测体积(m3):</div>
+                        <div class="col-4"><input></div>
+                    </div>
+                    <div class="row p-2 border">
+                        <div class="col-5 text-nowrap">毛标准体积（m3）：</div>
+                        <div class="col-4">
+                            <input>
+                        </div>
+                    </div>
+                    <div class="row p-2 border">
+                        <div class="col-5 text-nowrap">净标准体积（m3）：</div>
+                        <div class="col-4">
+                            <input>
+                        </div>
+                    </div>
+                    <div class="row p-2 border">
+                        <div class="col-5 text-nowrap">净标准重量（t）：</div>
+                        <div class="col-4">
+                            <input>
+                        </div>
+                    </div>
+                    <div class="row p-2 border" tag="第12行">
+                        <div class="col-5 text-nowrap">罐空量（t）：</div>
+                        <div class="col-4"><input></div>
+                    </div>
+                </div>
+
+                <div class="col-8 text-center border">
+                    <div class="h3">无数据</div>
+                    <label>No data to display.</label>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        function toggleNode(element) {
+            var childList = element.nextElementSibling;
+            if (childList) {
+                if (childList.style.display === "none" || childList.style.display === "") {
+                    childList.style.display = "block";
+                    element.textContent = "-";
+                } else {
+                    childList.style.display = "none";
+                    element.textContent = "+";
+                }
+            }
+        }
+    </script>
+
+    <script src="script/bootstrap.bundle.js"></script>
+    <script src="script/temp.js"></script>
+    <script src="script/tankFarm.js"></script>
+    <script>
+        var temper = new TempBar("#temp")
+        temper.setValue(8, 10)
+        var tankfarm_val = new tankFarmBar('#tankFarm')
+        tankfarm_val.setValue(17, 30)
+    </script>
+</body>
+
+
+</html>

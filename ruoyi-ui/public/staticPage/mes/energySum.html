@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能源结算视图</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container-fluid text-center m-2 p-2">
+        <div class="row" tag="查询区域">
+            <div class="col-2">
+                <div class="d-flex">
+                    <label class="m-2 text-nowrap">时间：</label>
+                    <input class="m-2" type="date" id="dayFrom" date="2023/9/13">
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="d-flex">
+                    <label class="m-2">--</label>
+                    <input class="m-2" type="date" id="dayTo" date="2023/10/13">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="d-flex">
+                    <label class="m-2 text-nowrap">管网平衡：</label>
+                    <select class="form-select m-2" aria-label="default select">
+                        <option selected>已平衡</option>
+                        <option value="1">平衡1</option>
+                        <option value="2">平衡2</option>
+                        <option value="3">平衡3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="d-flex">
+                    <label class="m-2 text-nowrap">工厂：</label>
+                    <select class="form-select m-2" aria-label="select">
+                        <option selected>全部</option>
+                        <option value="1">工厂1</option>
+                        <option value="2">工厂2</option>
+                        <option value="3">工厂3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="d-flex">
+                    <label class="p-2 text-nowrap">能源:</label>
+                    <input type="text p-2 m-4" value="新鲜水" style="width: 80px;">
+                </div>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-outline-success text-info border p-2"><i class=" bi bi-search"></i>
+                    查询</button>
+            </div>
+        </div>
+
+        <div class="row p-1" tag="按钮操作">
+            <div class="col">
+                <div class="d-flex m-2 p-2">
+                    <button type="button" class="btn border btn-outline-success m-2 text-info"><i
+                            class="bi bi-calculator"></i>
+                        计算</button>
+                    <button type="button" class="btn border btn-outline-success m-2 text-info"><i
+                            class="bi bi-save"></i>
+                        保存</button>
+                    <button type="button" class="btn border btn-outline-success m-2 text-danger"><i
+                            class="bi bi-trash"></i>
+                        删除</button>
+                    <button type="button" class="btn border btn-outline-success m-2 text-info"><i
+                            class="bi bi-box-arrow-up"></i> 提交</button>
+                    <button type="button" class="btn border btn-outline-success m-2 text-nowrap text-info"><i
+                            class="bi bi-clipboard2-x"></i> 取消提交</button>
+                    <button type="button" class="btn btn-outline-success text-info border m-2"><i
+                            class="bi bi-arrow-bar-up"></i> 导入</button>
+                    <button type="button" class="btn btn-outline-success text-success border m-2"><i
+                            class="bi bi-arrow-bar-down"></i>
+                        导出</button>
+                </div>
+            </div>
+            <div class="col-1 p-3">
+                <button class="btn btn-outline-secondary"
+                    style="width: 35px; height: 35px; border-radius: 50%; font-size: 12px;">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="row p-1 border-1" tag="表格定义">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th width="10%">核算单元名称</th>
+                        <th>消耗量</th>
+                        <th>互供出厂量</th>
+                        <th>外供量</th>
+                        <th>转换输入量</th>
+                        <th>外购量</th>
+                        <th>自产量</th>
+                        <th>转换输出量</th>
+                        <th>互供进厂量</th>
+                    </tr>
+                </thead>
+                <tbody id="meteringPointTable">
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end p-2">
+                    <label class="m-2 p-2">共 5 条</label>
+                    <select class="m-2">
+                        <option selected>10条/页</option>
+                        <option value="1">20条/页</option>
+                        <option value="2">30条/页</option>
+                        <option value="3">50条/页</option>
+                    </select>
+
+                    <div class="d-flex m-2">
+                        <li class="page-item disabled">
+                            <a class="page-link">
+                                < </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#"> > </a>
+                        </li>
+                    </div>
+                    <label class="p-2">前往</label>
+                    <input class="text-center" type="text" value="1" style="width: 40px;">
+                    <label class="p-2">页</label>
+                </ul>
+            </nav>
+        </div>
+
+
+        <script src="script/bootstrap.bundle.js"></script>
+
+        <script>
+            var jsonData = [
+                {
+                    "id": 1, "col1": "化工所", "col2": "242840.555", "col3": "0.000", "col4": "0.000", "col5": "0.000",
+                    "col6": "0.000", "col7": "199822.776", "col8": "0.000", "col9": "0.000", "col10": [
+                        { "id": 1, "col1": "__化工所（芳樟醇装置） AA " },
+                        { "id": 2, "col1": "__化工所（芳樟醇装置） BB" }
+                    ]
+                },
+                {
+                    "id": 2, "col1": "涤纶部来自水务公司低硅水", "col2": "外购节点", "col3": "0.000", "col4": "0.000", "col5": "456907.000",
+                    "col6": "456907.000", "col7": "414.122", "col8": "0.000", "col9": "0.000", "col10": [
+                        { "id": 1, "col1": "__化工所（芳樟醇装置） CC" },
+                        { "id": 2, "col1": "__化工所（芳樟醇装置） DD" }
+                    ]
+                },
+                {
+                    "id": 3, "col1": "涤纶部来自水务公司淡源水", "col2": "外购节点", "col3": "0.000", "col4": "0.000", "col5": "638537.000",
+                    "col6": "638537.000", "col7": "858249.122", "col8": "0.000", "col9": "0.000", "col10": [
+                        { "id": 1, "col1": "__化工所（芳樟醇装置） EE" },
+                        { "id": 2, "col1": "__化工所（芳樟醇装置） FF" }
+                    ]
+                },
+                {
+                    "id": 4, "col1": "热电部外购电", "col2": "外购节点", "col3": "0.000", "col4": "0.000", "col5": "0.000",
+                    "col6": "0.000", "col7": "0.122", "col8": "0.000", "col9": "0.000",
+                    "col10": [
+                        { "id": 1, "col1": "__化工所（芳樟醇装置） GG" },
+                        { "id": 2, "col1": "__化工所（芳樟醇装置） HH" }
+                    ]
+                },
+                {
+                    "id": 5, "col1": "热电部自产电", "col2": "生产节点", "col3": "0.000", "col4": "0.000", "col5": "0.000",
+                    "col6": "0.000", "col7": "0.122", "col8": "0.000", "col9": "0.000",
+                    "col10": [
+                        { "id": 1, "col1": "__化工所（芳樟醇装置） II" },
+                        { "id": 2, "col1": "__化工所（芳樟醇装置） JJ" }
+                    ]
+                },
+            ]
+
+            //使用 json数据 动态填充表格
+            const tablebody = document.getElementById('meteringPointTable');
+            tablebody.innerHTML = ``
+            jsonData.forEach(item => {
+
+                row = tablebody.insertRow(tablebody.rows.length);
+                row.id = `${item.id}`
+                cellid = row.insertCell(row.length);
+                cellid.innerHTML = `<button class="btn btn-outline-primary btn-sm" 
+                onclick="handleButtonClick(this, ${item.id})">+</button>`;
+                cell1 = row.insertCell(row.length);
+                cell1.innerText = item.col1;
+                cell2 = row.insertCell(row.length);
+                cell2.innerText = item.col2;
+                cell3 = row.insertCell(row.length);
+                cell3.innerText = item.col3;
+                cell4 = row.insertCell(row.length);
+                cell4.innerText = item.col4;
+                cell5 = row.insertCell(row.length);
+                cell5.innerText = item.col5;
+                cell6 = row.insertCell(row.length);
+                cell6.innerText = item.col6;
+                cell7 = row.insertCell(row.length);
+                cell7.innerText = item.col7;
+                cell8 = row.insertCell(row.length);
+                cell8.innerText = item.col8;
+                cell9 = row.insertCell(row.length);
+                cell9.innerText = item.col9;
+                tablebody.appendChild(row);
+
+                new_row = tablebody.insertRow(tablebody.rows.length);
+                new_row.id = `expend_table_${item.id}`;
+                new_row.style.display = "none";
+                tablebody.appendChild(new_row);
+            });
+
+            // 按钮点击处理函数
+            function handleButtonClick(button, id) {
+                tb_container = document.getElementById(`expend_table_${id}`);
+                if (button.innerText == '+') {
+                    button.innerHTML = '-';
+
+                    tb_container.style.display = "";
+                }
+                else {
+                    button.innerText = '+';
+                    tb_container.innerHTML = ``;
+                    tb_container.style.display = "none";
+                }
+                item = jsonData.find(item => item.id === id);
+                col10 = item.col10;
+                if (typeof col10 === 'undefined') {
+                    return;
+                }
+                tb_container.innerHTML = ``;
+                const border = document.createElement('td');
+                border.colSpan = '5';
+
+                const table = document.createElement('table');
+                table.className = 'table';
+
+                // const thead = document.createElement('thead');
+                // const headerRow = document.createElement('tr');
+                // headerRow.innerHTML = `<th></th><th>测点名称</th><th>原始值</th><th>校正值</th><th>数据状态</th>`;
+                // thead.appendChild(headerRow);
+
+                // table.appendChild(thead);
+                const tbody = document.createElement('tbody');
+
+                for (const rowData of col10) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td></td><td>${rowData.col1}</td>`;
+                    tbody.appendChild(row);
+                };
+                table.appendChild(tbody);
+                border.appendChild(table);
+                tb_container.appendChild(border);
+            }
+
+            const datalen = document.getElementById('data_length');
+            datalen.innerText = jsonData.length;
+
+        </script>
+</body>
+
+
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>业务单视图</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        input[type="text"] {
+            width: 100px;
+        }
+
+        input {
+            width: 160px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row p-3 me-2" tag="查询参数设置">
+            <div class="text-nowrap col-1 p-2">
+                <label>业务单分类</label>
+            </div>
+            <div class="col-2">
+                <select class="form-select me-2" aria-label="default select">
+                    <option selected>入库</option>
+                    <option value="1">出库</option>
+                    <option value="2">入厂</option>
+                    <option value="3">出厂</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <div class="d-flex p-1 me-2">
+                    <label class="text-nowrap p-2">时间：</label>
+                    <input type="date" id="dayFrom" date="2023/9/13">
+                    <label class="text-nowrap p-2">--</label>
+                    <input type="date" id="dayTo" date="2023/10/13">
+                </div>
+            </div>
+
+            <div class="col">
+                <button type="button" class="btn btn-primary border p-2 me-2"><i class="bi bi-search"></i> 查询</button>
+            </div>
+        </div>
+        <div class="row p-3" tag="按钮操作">
+            <div class="col">
+                <div class="d-flex">
+                    <button type="button" class="btn btn-outline-primary border me-2"><i class="bi bi-gear"></i>
+                        设置</button>
+                    <button type="button" class="btn btn-outline-success text-nowrap border me-2" data-bs-toggle="modal"
+                        data-bs-target="#newBusinessOrder"><i class="bi bi-plus-lg"></i> 新增</button>
+                    <button type="button" class="btn btn-outline-warning text-danger text-nowrap border me-2"><i
+                            class="bi bi-trash"></i> 删除</button>
+                    <button type="button" class="btn btn-outline-warning text-danger text-nowrap border me-2"><i
+                            class="bi bi-pen"></i>
+                        登账</button>
+                    <button type="button" class="btn btn-outline-warning text-danger text-nowrap border me-2"><i
+                            class="bi bi-terminal"></i> 冲销</button>
+                </div>
+            </div>
+            <div class="col-1 p-3">
+                <button class="btn btn-outline-secondary"
+                    style="width: 35px; height: 35px; border-radius: 50%; font-size: 12px;">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+        </div>
+
+
+        <hr>
+        <div class="row p-1 border-1" tag="表格定义">
+            <table id="myTable" class="table table-light table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-bg-light"></th>
+                        <th class="text-bg-light"></th>
+                        <th class="text-bg-light">业务单编码
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon2"
+                                    onclick="sortTable(2)"></i></button>
+                        </th>
+                        <th class="text-bg-light">操作用户
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon3"
+                                    onclick="sortTable(3)"></i></button>
+                        </th>
+                        <th class="text-bg-light">创建时间
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon4"
+                                    onclick="sortTable(4)"></i></button>
+                        </th>
+                        <th class="text-bg-light">操作类型
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon5"
+                                    onclick="sortTable(5)"></i></button>
+                        </th>
+                        <th class="text-bg-light">总重量（吨）
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon6"
+                                    onclick="sortTable(6)"></i></button>
+                        </th>
+                        <th class="text-bg-light">备注
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon7"
+                                    onclick="sortTable(7)"></i></button>
+                        </th>
+                        <th class="text-bg-light">状态
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon8"
+                                    onclick="sortTable(8)"></i></button>
+                        </th>
+                        <th class="text-bg-light">冲销类型
+                            <button class="btn"><i class="bi bi-caret-up" id="sortIcon9"
+                                    onclick="sortTable(9)"></i></button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="businessOrderTable">
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end p-2">
+                    <label class="p-2">共 5 条</label>
+                    <select class="m-2">
+                        <option selected>10条/页</option>
+                        <option value="1">20条/页</option>
+                        <option value="2">30条/页</option>
+                        <option value="3">50条/页</option>
+                    </select>
+
+                    <li class="page-item disabled">
+                        <a class="page-link">
+                            < </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"> > </a>
+                    </li>
+
+                    <label class="p-2">前往</label>
+                    <input class="text-center" type="text" value="1" style="width: 40px;">
+                    <label class="p-2">页</label>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="modal fade" id="newBusinessOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content" style="text-align: right;">
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title text-nowrap">新增入库业务单</h5>
+                    <button type="button" class="btn-close form-control" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="border-1 p-2">
+                        <h6 class="border-1 bg-light" style="text-align: left;">移动数据</h6>
+                        <div class="row text-right m-2" tag="行1">
+                            <div class="col-1">
+                                <label>业务单类型:</label>
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option selected>入库：</option>
+                                    <option value="1">出库</option>
+                                    <option value="2">入厂</option>
+                                    <option value="3">出厂</option>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <label style="color: red;">可填项均为必填</label>
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-outline-success border text-nowrap"><i class="bi bi-plus-lg"></i>
+                                    新增</button>
+                            </div>
+                        </div>
+                        <div class="row text-right m-2" tag="行2">
+                            <div class="col-1 text-right text-nowrap p-2">
+                                来源节点：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>1#装置</option>
+                                    <option value="1">1#装置</option>
+                                    <option value="2">装卸点入厂</option>
+                                    <option value="3">仓库</option>
+                                </select>
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                来源物料：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>2#装置</option>
+                                    <option value="1">3#装置</option>
+                                    <option value="2">仓库</option>
+                                    <option value="3">装卸点进厂</option>
+                                </select>
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                来源等级：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>高级</option>
+                                    <option value="1">中级</option>
+                                    <option value="2">低级</option>
+                                </select>
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                来源批次：
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row text-right m-2" tag="行3">
+                            <div class="col-1 text-right text-nowrap p-2">
+                                目标节点：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>1#装置</option>
+                                    <option value="1">1#装置</option>
+                                    <option value="2">装卸点入厂</option>
+                                    <option value="3">仓库</option>
+                                </select>
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                目标物料：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>2#装置</option>
+                                    <option value="1">3#装置</option>
+                                    <option value="2">仓库</option>
+                                    <option value="3">装卸点进厂</option>
+                                </select>
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                目标等级：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>高级</option>
+                                    <option value="1">中级</option>
+                                    <option value="2">低级</option>
+                                </select>
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                目标批次：
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row text-right m-2" tag="行4">
+                            <div class="col-1 text-right text-nowrap p-2">
+                                物料规格：
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control-sm">
+                            </div>
+                            <div class="col-1 text-nowrap p-2">
+                                Kg/件
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                重量单位：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>吨</option>
+                                    <option value="1">立方米</option>
+                                    <option value="2">千克</option>
+                                </select>
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                移动件数：
+                            </div>
+                            <div class="col-2">
+                                <input class="form-control-sm">
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                移动重量：
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row text-right m-2" tag="行5">
+                            <div class="col-1 text-right text-nowrap p-2">
+                                客户：
+                            </div>
+                            <div class="col-2">
+                                <input class="form-control-sm">
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                交货单号：
+                            </div>
+                            <div class="col-2">
+                                <input class="form-control-sm">
+                            </div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                运输类型 ：
+                            </div>
+                            <div class="col-2">
+                                <select class="form-select" aria-label="select">
+                                    <option value="0" selected>船运</option>
+                                    <option value="1">管道</option>
+                                    <option value="2">火车</option>
+                                    <option value="2">汽车</option>
+                                </select>
+                            </div>
+
+                            <div class="col-1 text-right text-nowrap p-2">
+                                车牌号：
+                            </div>
+                            <div class="col-1">
+                                <input type="text" class="form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row text-right m-2" tag="行6">
+                            <div class="col-1 text-right text-nowrap p-2">
+                                领料人：
+                            </div>
+                            <div class="col-2">
+                                <input type="text" class="form-control-sm">
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-2 p-2">“描述”字段非必填</div>
+                            <div class="col-1 text-right text-nowrap p-2">
+                                描述：
+                            </div>
+                            <div class="col-2">
+                                <input class="form-control-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="border-1">
+
+                    <div class="border-1 p-2">
+                        <h6 class="border-1 bg-light" style="text-align: left;">移动信息</h6>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-2">
+                                <button class="btn btn-outline-success border m-2"><i class="bi bi-save"></i>
+                                    保存</button>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn-outline-danger border m-2"><i class="bi bi-trash"></i>
+                                    删除</button>
+                            </div>
+                        </div>
+                        <div class="row border-1" tag="输入弹窗表格">
+                            <table class="table table-bordered table-striped table-hover" id="myTable">
+                                <thead>
+                                    <tr>
+                                        <th class="text-bg-light">物料源</th>
+                                        <th class="text-bg-light">目的物料</th>
+                                        <th class="text-bg-light">源节点</th>
+                                        <th class="text-bg-light">目标节点</th>
+                                        <th class="text-bg-light">源等级</th>
+                                        <th class="text-bg-light">目标等级</th>
+                                        <th class="text-bg-light">源批次</th>
+                                        <th class="text-bg-light">目标批次</th>
+                                        <th class="text-bg-light">单件重</th>
+                                        <th class="text-bg-light">件数</th>
+                                        <th class="text-bg-light">重量</th>
+                                        <th class="text-bg-light">单位</th>
+                                        <th class="text-bg-light">客户</th>
+                                        <th class="text-bg-light">车牌号</th>
+                                        <th class="text-bg-light">描述</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="businessOrderDialogTable">
+                                    <tr>
+                                        <td>物料源1</td>
+                                        <td>目的物料1</td>
+                                        <td>源节点1</td>
+                                        <td>目标节点1</td>
+                                        <td>源等级1</td>
+                                        <td>目标等级1</td>
+                                        <td>源批次1</td>
+                                        <td>目标批次1</td>
+                                        <td>单件重</td>
+                                        <td>件数44</td>
+                                        <td>重量xx</td>
+                                        <td>单位</td>
+                                        <td>客户</td>
+                                        <td>京P xxxxxx</td>
+                                        <td>描述</td>
+                                    </tr>
+                                    <tr>
+                                        <td>物料源2</td>
+                                        <td>目的物料2</td>
+                                        <td>源节点2</td>
+                                        <td>目标节点2</td>
+                                        <td>源等级2</td>
+                                        <td>目标等级2</td>
+                                        <td>源批次2</td>
+                                        <td>目标批次2</td>
+                                        <td>单件重</td>
+                                        <td>件数44</td>
+                                        <td>重量xx</td>
+                                        <td>单位</td>
+                                        <td>客户</td>
+                                        <td>京P xxxxxx</td>
+                                        <td>描述</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary border" data-bs-dismiss="modal"><i
+                            class="bi bi-x-circle"></i> 关闭</button>
+                    <button type="button" class="btn btn-outline-primary border"><i class="bi bi-save"></i> 保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/bootstrap.bundle.js"></script>
+
+    <script>
+        var jsonData = [
+            {
+                "id": 1, "col1": "2023091300001010", "col2": "admin", "col3": "2019-10-31 10:14:23", "col4": "生产入库", "col5": "201658135.000",
+                "col6": "", "col7": "未登账", "col8": ""
+            },
+            {
+                "id": 2, "col1": "2023091300001011", "col2": "admin", "col3": "2019-10-31 10:14:23", "col4": "生产入库", "col5": "20156907.000",
+                "col6": "", "col7": "未登账", "col8": ""
+            },
+            {
+                "id": 3, "col1": "2023091300001012", "col2": "admin", "col3": "2019-10-31 10:14:23", "col4": "生产入库", "col5": "20138537.000",
+                "col6": "", "col7": "未登账", "col8": ""
+            },
+            {
+                "id": 4, "col1": "2023091300001013", "col2": "admin", "col3": "2019-10-31 10:14:23", "col4": "生产入库", "col5": "201.000",
+                "col6": "", "col7": "未登账", "col8": ""
+            },
+            {
+                "id": 5, "col1": "2023091300001014", "col2": "admin", "col3": "2019-10-31 10:14:23", "col4": "生产入库", "col5": "201.000",
+                "col6": "", "col7": "未登账", "col8": ""
+            }
+        ]
+
+        //使用 json数据 动态填充表格
+        const tablebody = document.getElementById('businessOrderTable');
+        tablebody.innerHTML = ``;
+        jsonData.forEach(item => {
+
+            row = tablebody.insertRow(tablebody.rows.length);
+            row.id = `${item.id}`
+            cellid = row.insertCell(row.length);
+            cellid.innerHTML = item.id;
+            cell1 = row.insertCell(row.length);
+            cell1.innerHTML = `<input type='checkbox'>`;
+            cell2 = row.insertCell(row.length);
+            cell2.innerText = item.col1;
+            cell3 = row.insertCell(row.length);
+            cell3.innerText = item.col2;
+            cell4 = row.insertCell(row.length);
+            cell4.innerText = item.col3;
+            cell5 = row.insertCell(row.length);
+            cell5.innerText = item.col4;
+            cell6 = row.insertCell(row.length);
+            cell6.innerText = item.col5;
+            cell7 = row.insertCell(row.length);
+            cell7.innerText = item.col6;
+            cell8 = row.insertCell(row.length);
+            cell8.innerText = item.col7;
+            cell9 = row.insertCell(row.length);
+            cell9.innerText = item.col8;
+            tablebody.appendChild(row);
+        });
+
+        function sortTable(columnIndex) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById("myTable");
+            switching = true;
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+
+                for (j = 1; j < rows.length - 1; j++) {
+                    for (i = j; i < rows.length - 1; i++) {
+                        shouldSwitch = false;
+                        x = rows[i].getElementsByTagName("td")[columnIndex];
+                        y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        // 切换排序图标
+                        toggleSortIcon(columnIndex);
+                    }
+                }
+
+
+
+            }
+        }
+
+        // 切换排序图标
+        function toggleSortIcon(columnIndex) {
+            var sortIcon = document.getElementById("sortIcon" + columnIndex);
+            if (sortIcon.className === "bi bi-caret-up") {
+                sortIcon.className = "bi bi-caret-down"; // 向下箭头
+            } else {
+                sortIcon.className = "bi bi-caret-up"; // 向上箭头
+            }
+        }
+
+    </script>
+</body>
+
+
+</html>

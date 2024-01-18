@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础视图</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+
+<body class>
+    <div class="row" style="height: 750px;">
+        <div class="col-2">
+            <!-- 垂直导航菜单 -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-column">
+                        <a href="#" class="nav-link bg-info">首页</a>
+                        <a href="businessOrder.html" class="nav-link">业务单</a>
+                        <a href="energyClose.html" class="nav-link">能源封账/完工确认</a>
+                        <a href="energySum.html" class="nav-link">能源结算</a>
+                        <a href="equipmentInOut.html" class="nav-link">物料移动</a>
+                        <a href="factoryInOut.html" class="nav-link">进出厂班量</a>
+                        <a href="instructMonitor.html" class="nav-link">仪表计量</a>
+                        <a href="meteringPipe.html" class="nav-link">管道进厂计量</a>
+                        <a href="meteringPoint.html" class="nav-link">测量点合计</a>
+                        <a href="nodesConfirm.html" class="nav-link">能源统计</a>
+                        <a href="tankFarmMonitor.html" class="nav-link">罐区-Tis监控</a>
+                        <a href="one_equipment.html" class="nav-link">装置视图-进出侧线</a>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="col-10">
+            <iframe id="pageFrame" src="" frameborder="1" width="100%" height="100%"></iframe>
+        </div>
+    </div>
+
+    <div class="container">
+
+    </div>
+    <script src="script/bootstrap.bundle.js"></script>
+    <script>
+        // 监听导航链接的点击事件
+        document.querySelectorAll('.nav-link').forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // 阻止默认链接行为
+
+                // 获取被点击的链接的 data-page 属性值
+                var page = this.getAttribute('href');
+                document.querySelector('#pageFrame').src = page;
+
+            });
+        });
+    </script>
+</body>
+
+
+</html>

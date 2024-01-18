@@ -1,0 +1,119 @@
+//文字大小
+$big:48px;
+$large:32px;
+$medium:24px;
+$normal:20px;
+$small:16px;
+$mini:12px;
+
+//颜色
+$blue:#1890ff;
+$light-blue:#67c23a;
+$red:#ff4949;
+$pink:#ff6666;
+$green:#13ce66;
+$tiffany:#ffba00;
+$yellow:#f7ba18;
+$gray:#999;
+$light-gray:#ccc;
+$lighter-gray:#eee;
+$lightest-gray:#f5f5f5;
+$white:#fff;
+$black:#000;
+$primary:#1890ff;
+$success:#13ce66;
+$warning:#ffba00;
+$danger:#ff4949;
+$info:#1E1E1E;
+$border-color-light:#dfe4ed;
+$border-color-lighter:#e6ebf5;
+$table-border:#dfe6ec;
+
+.blue{
+  color: $blue;
+}
+.light-blue{
+  color: $light-blue;
+}
+.red{
+  color: $red;
+}
+.pink{
+  color: $pink;
+}
+.green{
+  color: $green;
+}
+.tiffany{
+  color: $tiffany;
+}
+.yellow{
+  color: $yellow;
+}
+.gray{
+  color: $gray;
+}
+.light-gray{
+  color: $light-gray;
+}
+.lighter-gray{
+  color: $lighter-gray;
+}
+.lightest-gray{
+  color: $lightest-gray;
+}
+.white{
+  color: $white;
+}
+.black{
+  color: $black;
+}
+.primary{
+  color: $primary;
+}
+.success{
+  color: $success;
+}
+.warning{
+  color: $warning;
+}
+.danger{
+  color: $danger;
+}
+.info{
+  color: $info;
+}
+.border-color-light{
+  border-color: $border-color-light;
+}
+.border-color-lighter{
+  border-color: $border-color-lighter;
+}
+.table-border{
+  border-color: $table-border;
+}
+
+/*字号大小*/
+.big{
+  font-size: $big;
+}
+.large{
+  font-size: $large;
+}
+.medium{
+  font-size: $medium;
+}
+.normal{
+  font-size: $normal;
+}
+.small{
+  font-size: $small;
+}
+.mini{
+  font-size: $mini;
+}
+
+//粗体
+.bold{
+  font-weight: bold;
+}

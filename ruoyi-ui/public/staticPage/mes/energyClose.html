@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能源统计-封账/完工确认视图</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container-fluid text-center m-2 p-2">
+        <div class="d-flex p-1 m-2">
+            <label class="p-2">时间：</label>
+            <input type="date" id="dayFrom" date="2023/9/13">
+            <label class="p-2">--</label>
+            <input type="date" id="dayTo" date="2023/10/13">
+            <label class="p-2">MES工厂：</label>
+            <div class="col1">
+                <select class="form-select" aria-label="select">
+                    <option selected>化工所</option>
+                    <option value="1">工厂1</option>
+                    <option value="2">工厂2</option>
+                    <option value="3">工厂3</option>
+                </select>
+            </div>
+            <label class="p-2">能源：</label>
+            <div class="col">
+                <select class="form-select" aria-label="default select">
+                    <option selected>新鲜水</option>
+                    <option value="1">能源1</option>
+                    <option value="2">能源2</option>
+                    <option value="3">能源3</option>
+                </select>
+            </div>
+            <label class="p-2">数据类型</label>
+            <div class="col">
+                <select class="form-select" aria-label="default select">
+                    <option selected>消耗类型</option>
+                    <option value="1">水</option>
+                    <option value="2">电</option>
+                    <option value="3">气</option>
+                    <option value="4">媒</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-outline-success text-success border p-2"><i
+                        class="bi bi-search"></i> 查询</button>
+            </div>
+        </div>
+        <div class="row p-1" tag="按钮操作">
+            <div class="col">
+                <div class="d-flex p-1 me-2">
+                    <button type="button" class="btn btn-outline-success text-success border m-2"><i
+                            class="bi bi-box-arrow-up"></i>
+                        提交</button>
+                    <button type="button" class="btn btn-outline-warning text-warning border text-nowrap m-2"><i
+                            class="bi bi-clipboard2-x"></i> 取消提交</button>
+                    <button type="button" class="btn btn-outline-success text-success border m-2"><i
+                            class="bi bi-arrow-bar-up"></i>
+                        导入</button>
+                    <button type="button" class="btn btn-outline-success text-success border m-2"><i
+                            class="bi bi-arrow-bar-down"></i>
+                        导出</button>
+                </div>
+            </div>
+
+            <div class="col-1 p-3">
+                <button class="btn btn-outline-secondary"
+                    style="width: 35px; height: 35px; border-radius: 50%; font-size: 12px;">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="row p-1 border-1" tag="表格定义">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th width="10%">核算单元名称</th>
+                        <th>能源</th>
+                        <th>数据类型</th>
+                        <th>结束时间</th>
+                        <th>原始量</th>
+                        <th>校正量</th>
+                        <th>管网平衡量</th>
+                        <th>核算实际量</th>
+                        <th>核算结算量</th>
+                        <th>数据状态</th>
+                    </tr>
+                </thead>
+                <tbody id="meteringPointTable">
+                    <tr>
+                        <td>化工所</td>
+                        <td>新鲜水</td>
+                        <td>数据类型</td>
+                        <td>12345.67</td>
+                        <td>12345.678</td>
+                        <td>12345.678</td>
+                        <td>2228.676</td>
+                        <td>3344.55</td>
+                        <td>4455.66</td>
+                        <td>未提交</td>
+                    </tr>
+                    <tr>
+                        <td>化工所1#碳五分离装置</td>
+                        <td>新鲜水</td>
+                        <td>数据类型</td>
+                        <td>12345.67</td>
+                        <td>12345.678</td>
+                        <td>12345.678</td>
+                        <td>2228.676</td>
+                        <td>3344.55</td>
+                        <td>4455.66</td>
+                        <td>未提交</td>
+                    </tr>
+                    <tr>
+                        <td>化工所2#碳五分离装置</td>
+                        <td>新鲜水</td>
+                        <td>数据类型</td>
+                        <td>12345.67</td>
+                        <td>12345.678</td>
+                        <td>12345.678</td>
+                        <td>2228.676</td>
+                        <td>3344.55</td>
+                        <td>4455.66</td>
+                        <td>未提交</td>
+                    </tr>
+                    <tr>
+                        <td>化工所1#循环水场</td>
+                        <td>新鲜水</td>
+                        <td>数据类型</td>
+                        <td>12345.67</td>
+                        <td>12345.678</td>
+                        <td>12345.678</td>
+                        <td>2228.676</td>
+                        <td>3344.55</td>
+                        <td>4455.66</td>
+                        <td>未提交</td>
+                    </tr>
+                    <tr>
+                        <td>化工所2#循环水场</td>
+                        <td>新鲜水</td>
+                        <td>数据类型</td>
+                        <td>12345.67</td>
+                        <td>12345.678</td>
+                        <td>12345.678</td>
+                        <td>2228.676</td>
+                        <td>3344.55</td>
+                        <td>4455.66</td>
+                        <td>未提交</td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end p-2">
+                    <label class="p-2">共 5 条</label>
+                    <select class="m-2">
+                        <option selected>10条/页</option>
+                        <option value="1">20条/页</option>
+                        <option value="2">30条/页</option>
+                        <option value="3">50条/页</option>
+                    </select>
+
+                    <li class="page-item disabled">
+                        <a class="page-link">
+                            < </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#"> > </a>
+                    </li>
+                    <label class="p-2">前往</label>
+                    <input class="text-center" type="text" value="1" style="width: 40px;">
+                    <label class="p-2">页</label>
+                </ul>
+            </nav>
+        </div>
+
+        <script src="script/bootstrap.bundle.js"></script>
+
+        <script>
+
+        </script>
+</body>
+
+
+</html>
